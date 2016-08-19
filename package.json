@@ -1,0 +1,47 @@
+{
+    "name": "oasis",
+    "optionalDependencies": {
+        "gettext": "https://github.com/npm-opam/gettext"
+    },
+    "exportedEnvVars": {
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.4.6"
+        },
+        "oasis_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.4.6"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        }
+    },
+    "version": "0.4.6",
+    "dependencies": {
+        "ocamlbuild": "https://github.com/npm-opam/ocamlbuild",
+        "base-unix": "https://github.com/npm-opam/base-unix",
+        "ocamlfind": "https://github.com/npm-opam/ocamlfind",
+        "ocamlmod": "https://github.com/npm-opam/ocamlmod",
+        "ocaml": "https://github.com/npm-opam/ocaml.git#npm-4.02.3",
+        "ocamlify": "https://github.com/npm-opam/ocamlify",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git",
+        "substs": "https://github.com/yunxing/substs.git",
+        "ocaml-data-notation": "https://github.com/npm-opam/ocaml-data-notation",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ocaml setup.ml -configure --prefix $opam_prefix --${gettext_enable:-disable}-gettext && ocaml setup.ml -build && ocaml setup.ml -install && (opam-installer --prefix=$opam_prefix || true) && injectOpamEnvs"
+    }
+}
