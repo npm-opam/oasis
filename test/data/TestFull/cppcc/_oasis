@@ -1,0 +1,14 @@
+OASISFormat: 0.4
+Name:        cppcc
+Version:     0.1
+License:     LGPL with OCaml linking exception
+Authors:     Sylvain Le Gall
+Synopsis:    Test how to handle C++ compiler.
+BuildTools:  ocamlbuild
+Plugins:     META (0.4)
+
+Library cppcc
+  Path:     .
+  Modules:  Cppcc
+  CSources: testc++.c
+  CCOpt:    -Wall
